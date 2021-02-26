@@ -1,8 +1,14 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
+node_modules
+public/hot
+public/storage
+public/css/app.css
+public/js/app.js
+public/mix-manifest.json
+public/js/manifest.js
+public/js/app.js.LICENSE.txt
+public/js/vendor.js
+storage/*.key
+vendor
 .env
 .env.backup
 .phpunit.result.cache
@@ -11,4 +17,4 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.idea
+.idea
