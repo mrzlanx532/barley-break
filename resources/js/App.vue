@@ -10,7 +10,23 @@
     </div>
 </template>
 <script>
+    import { mapMutations } from 'vuex';
+    import { mapGetters } from 'vuex';
+
     export default {
         name: 'App',
+        methods: {
+            ...mapMutations([
+                'setAppIsInitialized',
+                'setUser'
+            ])
+        },
+        created() {
+            axios.get('/api/user').then((response)=>{
+                this.setUser(response.data)
+            }).finally(() => {
+                this.setAppIsInitialized();
+            })
+        }
     }
 </script>

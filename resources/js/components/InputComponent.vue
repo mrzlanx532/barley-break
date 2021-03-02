@@ -2,7 +2,14 @@
     <div class="p-1">
         <label :for="name">
             {{ label ? label : name }}
-            <input :type="type" :name="name" class="p-2 mb-2 w-full" :placeholder="placeholder" :autocomplete="autocomplete">
+            <input :value="value"
+                   :type="type"
+                   :name="name"
+                   class="p-2 mb-2 w-full"
+                   :placeholder="placeholder"
+                   :autocomplete="autocomplete"
+                   @input="$emit('input', $event.target.value)"
+            >
         </label>
     </div>
 </template>
@@ -18,7 +25,8 @@
             },
             label: String,
             placeholder: String,
-            autocomplete: String
-        }
+            autocomplete: String,
+            value: String
+        },
     }
 </script>

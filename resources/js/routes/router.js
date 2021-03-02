@@ -1,33 +1,31 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-
-import MainView from "./views/MainView"
-import LoginView from "./views/LoginView"
-import SignInView from "./views/SignInView"
+import store from "../store/store"
+import isEmpty from "lodash/isEmpty"
 
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
-        component: MainView,
-        name: 'Home',
+        component: require('./views/MainView').default,
+        name: 'home',
         meta: {
             title : 'Barley-break | Game'
         }
     },
     {
         path: '/login',
-        component: LoginView,
-        name: 'Login',
+        component: require('./views/LoginView').default,
+        name: 'login',
         meta: {
             title: 'Barley-break | Log In'
         }
     },
     {
         path: '/sign-in',
-        component: SignInView,
-        name: 'SignIn',
+        component: require('./views/SignInView').default,
+        name: 'sign-in',
         meta: {
             title: 'Barley-break | Sign In'
         }
@@ -39,20 +37,24 @@ const router = new VueRouter({
     routes
 });
 
-const unauthorizedRoutes = [
-    'Login',
-    'SignIn'
+const routesWithoutAuth = [
+    'login',
+    'sign-in'
 ];
 
-// TODO: Make authorization
-let isAuthenticated = false;
-
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title
-    if (!unauthorizedRoutes.includes(to.name) && !isAuthenticated)
-        next({ name: 'Login' })
-    else
-        next()
+
+    next()
+
+    store.watch(() => store.getters.getAppIsInitialized, () => {
+        if (store.getters.getAppIsInitialized) {
+            if (!isEmpty(store.getters.getUser)) {
+                next()
+            } else {
+                routesWithoutAuth.includes(to.name) ? next() : next({ name: 'login' });
+            }
+        }
+    });
 })
 
 export default router
