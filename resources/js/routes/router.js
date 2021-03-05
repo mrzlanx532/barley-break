@@ -5,11 +5,14 @@ import isEmpty from "lodash/isEmpty"
 
 Vue.use(VueRouter)
 
+Vue.component('default-layout', require('./layouts/Default').default);
+Vue.component('center-layout', require('./layouts/Center').default);
+
 const routes = [
     {
         path: '/',
-        component: require('./views/MainView').default,
-        name: 'home',
+        component: require('./views/GameView').default,
+        name: 'game',
         meta: {
             title : 'Barley-break | Game'
         }
@@ -19,7 +22,8 @@ const routes = [
         component: require('./views/LoginView').default,
         name: 'login',
         meta: {
-            title: 'Barley-break | Log In'
+            title: 'Barley-break | Log In',
+            layout: 'center-layout'
         }
     },
     {
@@ -27,7 +31,8 @@ const routes = [
         component: require('./views/SignInView').default,
         name: 'sign-in',
         meta: {
-            title: 'Barley-break | Sign In'
+            title: 'Barley-break | Sign In',
+            layout: 'center-layout'
         }
     },
 ];
@@ -44,17 +49,15 @@ const routesWithoutAuth = [
 
 router.beforeEach((to, from, next) => {
 
-    next()
-
     store.watch(() => store.getters.getAppIsInitialized, () => {
         if (store.getters.getAppIsInitialized) {
-            if (!isEmpty(store.getters.getUser)) {
-                next()
-            } else {
+            if (isEmpty(store.getters.getUser)) {
                 routesWithoutAuth.includes(to.name) ? next() : next({ name: 'login' });
             }
         }
     });
+
+    next()
 })
 
 export default router

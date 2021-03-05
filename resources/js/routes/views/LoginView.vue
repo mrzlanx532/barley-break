@@ -6,14 +6,14 @@
                 <input-component v-model="formData.email" name="email" label="Email" placeholder="Your email"/>
                 <input-component v-model="formData.password" name="password" label="Password" placeholder="Your password" type="password"  autocomplete="true"/>
                 <submit-button/>
-                <router-link to="/sign-in" class="text-center mt-1 text-blue-400 hover:text-blue-500">Sign in</router-link>
+                <router-link to="/sign-in" class="text-center mt-1 text-brown-dark hover:text-brown-middle">Sign in</router-link>
             </div>
         </form>
     </div>
 </template>
 <script>
-    import InputComponent from "../../components/InputComponent"
-    import SubmitButton from "../../components/SubmitButton"
+    import InputComponent from "../../components/base/InputComponent"
+    import SubmitButton from "../../components/base/SubmitButton"
 
     export default {
         data() {

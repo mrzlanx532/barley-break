@@ -7,15 +7,15 @@
                 <input-component type="password" label="Password" name="password" placeholder="Your password" autocomplete="true"/>
                 <input-component type="password" label="Password" name="password-repeat" placeholder="Repeat your password" autocomplete="true"/>
                 <submit-button/>
-                <router-link to="/login" class="text-center mt-1 text-blue-400 hover:text-blue-500">Log In</router-link>
+                <router-link to="/login" class="text-center mt-1 text-brown-dark hover:text-brown-middle">Log In</router-link>
             </div>
         </form>
     </div>
 </template>
 
 <script>
-    import InputComponent from "../../components/InputComponent"
-    import SubmitButton from "../../components/SubmitButton"
+    import InputComponent from "../../components/base/InputComponent"
+    import SubmitButton from "../../components/base/SubmitButton"
 
     export default {
         components: { InputComponent, SubmitButton },

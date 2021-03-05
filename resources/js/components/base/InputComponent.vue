@@ -1,6 +1,6 @@
 <template>
     <div class="p-1">
-        <label :for="name">
+        <label :for="name" class="text-brown-strict">
             {{ label ? label : name }}
             <input :value="value"
                    :type="type"

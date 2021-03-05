@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
-@csrf
 <main id="app"></main>
 <script src="{{mix('js/app.js')}}"></script>
 </body>
