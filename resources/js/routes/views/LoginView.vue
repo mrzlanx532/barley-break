@@ -14,6 +14,7 @@
 <script>
     import InputComponent from "../../components/base/InputComponent"
     import SubmitButton from "../../components/base/SubmitButton"
+    import { mapActions } from "vuex"
 
     export default {
         data() {
@@ -26,13 +27,15 @@
         },
         components: { InputComponent, SubmitButton },
         methods: {
+            ...mapActions({
+                getUser: 'getUser'
+            }),
             authorize() {
                 axios.post('/login', this.formData)
-                    .then(response => {
+                    .then(async (response) => {
                         if (response.status === 200) {
-                            console.log(response.data)
-                            this.$store.commit('setUser', response.data)
-                            this.$router.push('/')
+                            await this.getUser();
+                            this.$router.push({name: 'game'})
                         }})
                     .catch(error => {
                         if (error.response.status === 401) alert('Credentials are invalid..');

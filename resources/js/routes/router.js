@@ -49,15 +49,19 @@ const routesWithoutAuth = [
 
 router.beforeEach((to, from, next) => {
 
-    store.watch(() => store.getters.getAppIsInitialized, () => {
-        if (store.getters.getAppIsInitialized) {
-            if (isEmpty(store.getters.getUser)) {
-                routesWithoutAuth.includes(to.name) ? next() : next({ name: 'login' });
-            }
+    function proceed () {
+        if (isEmpty(store.getters.getUser)) {
+            routesWithoutAuth.includes(to.name) ? next() : next({ name: 'login' });
+        } else {
+            routesWithoutAuth.includes(to.name) ? next({ name: 'game' }) : next();
         }
-    });
+    }
 
-    next()
+    proceed()
+
+    store.watch(() => store.getters.getAppIsInitialized, () => {
+        proceed()
+    });
 })
 
 export default router

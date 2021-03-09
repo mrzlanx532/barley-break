@@ -20,7 +20,7 @@
     export default {
         components: { InputComponent, SubmitButton },
         methods: {
-            register(){
+            register() {
                 alert('This will be the API');
             }
         }

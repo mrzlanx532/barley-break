@@ -1,13 +1,9 @@
 <template>
     <div class="flex flex-col h-full">
 
-        <template v-if="preloader">
-            <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-                <img src="/svg/preloader.svg">
-            </div>
-        </template>
+        <preloader :toggle="!getAppIsInitialized"/>
 
-        <template v-else>
+        <template v-if="getAppIsInitialized">
             <template v-if="!gameStarted">
                 <game-init-component v-on:start-game="startGame"/>
             </template>
@@ -23,7 +19,7 @@
                     </div>
                 </template>
 
-                <div class="flex justify-center items-center h-full">
+                <div v-if="gameStarted" class="flex justify-center items-center h-full">
                     <div class="flex h-3/4 contents">
                         <div class="grid grid-cols-4 gap-4 mt-5">
                             <template v-for="(item, i) in gameData" :v-key="item">
@@ -37,7 +33,6 @@
                         </div>
                     </div>
                 </div>
-
             </template>
         </template>
     </div>
@@ -46,23 +41,26 @@
 <script>
     import Swal from 'sweetalert2';
     import GameInitComponent from "../../components/GameInitComponent"
+    import Preloader from "../../components/Preloader"
+    import { mapGetters } from 'vuex'
 
     export default {
-        components: { GameInitComponent },
+        components: { GameInitComponent, Preloader },
         data() {
             return {
-                data: 'ejrngjernkjgfeg_',
+                data: '',
                 gameData: [],
                 gameCompleted: false,
                 gameStarted: false,
                 timer: false,
                 interval: null,
                 hash: false,
-                preloader: true,
             }
         },
         created: function(){
-            let vm = this;
+
+            const vm = this;
+
             window.addEventListener('keydown', (e) => {
                 if(e.key === 'ArrowUp'){
                     vm.moveUp();
@@ -78,15 +76,17 @@
                 }
             });
             this.getLastGame();
-            this.preloader = false;
         },
         computed: {
+            ...mapGetters({
+                getAppIsInitialized: 'getAppIsInitialized'
+            }),
             checkResultURL: function(){
                 return '/api/game/'+this.hash+'/solve';
             }
         },
         methods: {
-            saveGame: function(){
+            saveGame() {
                 axios.post(this.checkResultURL, {
                     checkArray: this.gameData,
                     save: 'save',
@@ -94,7 +94,7 @@
                     hash: this.hash
                 })
             },
-            startGame: function(){
+            startGame() {
                 let vm = this;
                 axios.post('api/game', {data: 'fgdhfjbkgutirkf_'})
                     .then(function(response){
@@ -105,19 +105,19 @@
                         vm.hash = response.data.hash;
                     });
             },
-            getLastGame(){
+            getLastGame() {
                 let vm = this;
                 axios.get('api/game/last')
                     .then(function(response){
                         vm.hash = response.data;
                     });
             },
-            reset: function(){
+            reset() {
                 clearInterval(this.interval);
                 this.timer = 0;
                 this.startGame();
             },
-            countUp: function(){
+            countUp() {
                 let n = this.timer;
                 if (n === false) {
                     this.timer = true;
@@ -126,7 +126,7 @@
                     this.timer = n;
                 }
             },
-            moveLeft: function(){
+            moveLeft() {
 
                 let nextElem = null;
                 let prevElem = null;
@@ -149,7 +149,7 @@
                 }
                 this.checkResult();
             },
-            moveRight: function(){
+            moveRight() {
 
                 let nextElem = null;
                 let prevElem = null;
@@ -172,7 +172,7 @@
                 }
                 this.checkResult();
             },
-            moveUp: function(){
+            moveUp() {
 
                 let nextElem = null;
                 let prevElem = null;
@@ -202,13 +202,13 @@
                 }
                 this.checkResult();
             },
-            moveDown: function(){
+            moveDown() {
 
                 let nextElem = null;
                 let prevElem = null;
                 let vm = this;
 
-                this.gameData.forEach(function(element, index){
+                this.gameData.forEach(function(element, index) {
                     if (element === 0){
                         nextElem = index-4;
                         prevElem = index;
@@ -218,7 +218,7 @@
                     }
                 });
 
-                if (nextElem !== undefined && nextElem !== 16){
+                if (nextElem !== undefined && nextElem !== 16) {
                     let temp = this.gameData[prevElem];
                     let tempArr = this.gameData;
                     tempArr[prevElem] = this.gameData[nextElem];
@@ -229,11 +229,13 @@
                 }
                 this.checkResult();
             },
-            checkResult: function(){
+            checkResult(){
+
                 let vm = this;
-                axios.post(this.checkResultURL, { checkArray: this.gameData })
-                    .then(function(response){
-                        if (response.data){
+
+                axios.post(this.checkResultURL, { numbers: this.gameData })
+                    .then(function(response) {
+                        if (response.data) {
                             Swal.fire({
                                 title: 'Поздравляем, вы справились!',
                                 text: 'Вы собрали головоломку за '+vm.timer+' секунд',

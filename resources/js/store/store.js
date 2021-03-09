@@ -21,6 +21,12 @@ const store = new Vuex.Store({
         setAppIsInitialized (state) {
             state.appIsInitialized = true
         }
+    },
+    actions: {
+        async getUser({commit}) {
+            const response = await axios.get('/api/user')
+            commit('setUser', response.data)
+        }
     }
 })
 
