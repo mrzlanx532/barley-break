@@ -1,3 +1,10 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2 (Debian 12.2-2.pgdg100+1)
+-- Dumped by pg_dump version 12.2 (Debian 12.2-2.pgdg100+1)
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -23,39 +30,28 @@ SET search_path TO public;
 
 ALTER SCHEMA public OWNER TO postgres;
 
---
--- TOC entry 2921 (class 0 OID 0)
--- Dependencies: 3
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 208 (class 1259 OID 125743)
 -- Name: failed_jobs; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.failed_jobs (
-                                    id bigint NOT NULL,
-                                    uuid character varying(255) NOT NULL,
-                                    connection text NOT NULL,
-                                    queue text NOT NULL,
-                                    payload text NOT NULL,
-                                    exception text NOT NULL,
-                                    failed_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+    id bigint NOT NULL,
+    uuid character varying(255) NOT NULL,
+    connection text NOT NULL,
+    queue text NOT NULL,
+    payload text NOT NULL,
+    exception text NOT NULL,
+    failed_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 
 ALTER TABLE public.failed_jobs OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 125741)
 -- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -70,8 +66,6 @@ CREATE SEQUENCE public.failed_jobs_id_seq
 ALTER TABLE public.failed_jobs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2922 (class 0 OID 0)
--- Dependencies: 207
 -- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -79,23 +73,21 @@ ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
 
 
 --
--- TOC entry 217 (class 1259 OID 133931)
 -- Name: games; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.games (
-                              id integer NOT NULL,
-                              user_id integer NOT NULL,
-                              game_data_numbers json NOT NULL,
-                              game_data_timer integer NOT NULL,
-                              hash character(16)
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    game_data_numbers json NOT NULL,
+    game_data_timer integer NOT NULL,
+    hash character(16)
 );
 
 
 ALTER TABLE public.games OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 133929)
 -- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -111,8 +103,6 @@ CREATE SEQUENCE public.games_id_seq
 ALTER TABLE public.games_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2923 (class 0 OID 0)
--- Dependencies: 216
 -- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -120,21 +110,19 @@ ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
 
 
 --
--- TOC entry 203 (class 1259 OID 125715)
 -- Name: migrations; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.migrations (
-                                   id integer NOT NULL,
-                                   migration character varying(255) NOT NULL,
-                                   batch integer NOT NULL
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
 );
 
 
 ALTER TABLE public.migrations OWNER TO postgres;
 
 --
--- TOC entry 202 (class 1259 OID 125713)
 -- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -150,8 +138,6 @@ CREATE SEQUENCE public.migrations_id_seq
 ALTER TABLE public.migrations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2924 (class 0 OID 0)
--- Dependencies: 202
 -- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -159,41 +145,38 @@ ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 
 
 --
--- TOC entry 206 (class 1259 OID 125734)
 -- Name: password_resets; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.password_resets (
-                                        email character varying(255) NOT NULL,
-                                        token character varying(255) NOT NULL,
-                                        created_at timestamp(0) without time zone
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone
 );
 
 
 ALTER TABLE public.password_resets OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 125757)
 -- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.personal_access_tokens (
-                                               id bigint NOT NULL,
-                                               tokenable_type character varying(255) NOT NULL,
-                                               tokenable_id bigint NOT NULL,
-                                               name character varying(255) NOT NULL,
-                                               token character varying(64) NOT NULL,
-                                               abilities text,
-                                               last_used_at timestamp(0) without time zone,
-                                               created_at timestamp(0) without time zone,
-                                               updated_at timestamp(0) without time zone
+    id bigint NOT NULL,
+    tokenable_type character varying(255) NOT NULL,
+    tokenable_id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    token character varying(64) NOT NULL,
+    abilities text,
+    last_used_at timestamp(0) without time zone,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
 );
 
 
 ALTER TABLE public.personal_access_tokens OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 125755)
 -- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -208,8 +191,6 @@ CREATE SEQUENCE public.personal_access_tokens_id_seq
 ALTER TABLE public.personal_access_tokens_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2925 (class 0 OID 0)
--- Dependencies: 209
 -- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -217,41 +198,38 @@ ALTER SEQUENCE public.personal_access_tokens_id_seq OWNED BY public.personal_acc
 
 
 --
--- TOC entry 215 (class 1259 OID 125788)
 -- Name: sessions; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.sessions (
-                                 id character varying(255) NOT NULL,
-                                 user_id bigint,
-                                 ip_address character varying(45),
-                                 user_agent text,
-                                 payload text NOT NULL,
-                                 last_activity integer NOT NULL
+    id character varying(255) NOT NULL,
+    user_id bigint,
+    ip_address character varying(45),
+    user_agent text,
+    payload text NOT NULL,
+    last_activity integer NOT NULL
 );
 
 
 ALTER TABLE public.sessions OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 125780)
 -- Name: team_user; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.team_user (
-                                  id bigint NOT NULL,
-                                  team_id bigint NOT NULL,
-                                  user_id bigint NOT NULL,
-                                  role character varying(255),
-                                  created_at timestamp(0) without time zone,
-                                  updated_at timestamp(0) without time zone
+    id bigint NOT NULL,
+    team_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    role character varying(255),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
 );
 
 
 ALTER TABLE public.team_user OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 125778)
 -- Name: team_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -266,8 +244,6 @@ CREATE SEQUENCE public.team_user_id_seq
 ALTER TABLE public.team_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2926 (class 0 OID 0)
--- Dependencies: 213
 -- Name: team_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -275,24 +251,22 @@ ALTER SEQUENCE public.team_user_id_seq OWNED BY public.team_user.id;
 
 
 --
--- TOC entry 212 (class 1259 OID 125771)
 -- Name: teams; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.teams (
-                              id bigint NOT NULL,
-                              user_id bigint NOT NULL,
-                              name character varying(255) NOT NULL,
-                              personal_team boolean NOT NULL,
-                              created_at timestamp(0) without time zone,
-                              updated_at timestamp(0) without time zone
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    personal_team boolean NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
 );
 
 
 ALTER TABLE public.teams OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 125769)
 -- Name: teams_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -307,8 +281,6 @@ CREATE SEQUENCE public.teams_id_seq
 ALTER TABLE public.teams_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2927 (class 0 OID 0)
--- Dependencies: 211
 -- Name: teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -316,30 +288,28 @@ ALTER SEQUENCE public.teams_id_seq OWNED BY public.teams.id;
 
 
 --
--- TOC entry 205 (class 1259 OID 125723)
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.users (
-                              id bigint NOT NULL,
-                              name character varying(255) NOT NULL,
-                              email character varying(255) NOT NULL,
-                              email_verified_at timestamp(0) without time zone,
-                              password character varying(255) NOT NULL,
-                              remember_token character varying(100),
-                              current_team_id bigint,
-                              profile_photo_path text,
-                              created_at timestamp(0) without time zone,
-                              updated_at timestamp(0) without time zone,
-                              two_factor_secret text,
-                              two_factor_recovery_codes text
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    current_team_id bigint,
+    profile_photo_path text,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    two_factor_secret text,
+    two_factor_recovery_codes text
 );
 
 
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 204 (class 1259 OID 125721)
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -354,8 +324,6 @@ CREATE SEQUENCE public.users_id_seq
 ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2928 (class 0 OID 0)
--- Dependencies: 204
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -363,7 +331,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- TOC entry 2739 (class 2604 OID 125746)
 -- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -371,7 +338,6 @@ ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2744 (class 2604 OID 133934)
 -- Name: games id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -379,7 +345,6 @@ ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_
 
 
 --
--- TOC entry 2737 (class 2604 OID 125718)
 -- Name: migrations id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -387,7 +352,6 @@ ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.m
 
 
 --
--- TOC entry 2741 (class 2604 OID 125760)
 -- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -395,7 +359,6 @@ ALTER TABLE ONLY public.personal_access_tokens ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 2743 (class 2604 OID 125783)
 -- Name: team_user id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -403,7 +366,6 @@ ALTER TABLE ONLY public.team_user ALTER COLUMN id SET DEFAULT nextval('public.te
 
 
 --
--- TOC entry 2742 (class 2604 OID 125774)
 -- Name: teams id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -411,7 +373,6 @@ ALTER TABLE ONLY public.teams ALTER COLUMN id SET DEFAULT nextval('public.teams_
 
 
 --
--- TOC entry 2738 (class 2604 OID 125726)
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -419,8 +380,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- TOC entry 2906 (class 0 OID 125743)
--- Dependencies: 208
 -- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -429,8 +388,6 @@ COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed
 
 
 --
--- TOC entry 2915 (class 0 OID 133931)
--- Dependencies: 217
 -- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -442,8 +399,6 @@ COPY public.games (id, user_id, game_data_numbers, game_data_timer, hash) FROM s
 
 
 --
--- TOC entry 2901 (class 0 OID 125715)
--- Dependencies: 203
 -- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -461,8 +416,6 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 
 
 --
--- TOC entry 2904 (class 0 OID 125734)
--- Dependencies: 206
 -- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -471,8 +424,6 @@ COPY public.password_resets (email, token, created_at) FROM stdin;
 
 
 --
--- TOC entry 2908 (class 0 OID 125757)
--- Dependencies: 210
 -- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -855,8 +806,6 @@ COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, toke
 
 
 --
--- TOC entry 2913 (class 0 OID 125788)
--- Dependencies: 215
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -870,8 +819,6 @@ inNzEdoAyLaRfWBbRbY9VH8JNaehLp2ekGpB6tJU	1	127.0.0.1	Mozilla/5.0 (Windows NT 10.
 
 
 --
--- TOC entry 2912 (class 0 OID 125780)
--- Dependencies: 214
 -- Data for Name: team_user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -880,8 +827,6 @@ COPY public.team_user (id, team_id, user_id, role, created_at, updated_at) FROM 
 
 
 --
--- TOC entry 2910 (class 0 OID 125771)
--- Dependencies: 212
 -- Data for Name: teams; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -890,19 +835,15 @@ COPY public.teams (id, user_id, name, personal_team, created_at, updated_at) FRO
 
 
 --
--- TOC entry 2903 (class 0 OID 125723)
--- Dependencies: 205
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.users (id, name, email, email_verified_at, password, remember_token, current_team_id, profile_photo_path, created_at, updated_at, two_factor_secret, two_factor_recovery_codes) FROM stdin;
-1	Username	user@mail.ru	\N	$2y$10$mmddYZWf7md.xSoM2/GGe.NsVTaJFMUR8i.mJkP2zE6pZdffG76qm	\N	\N	\N	2020-11-07 13:25:07	2020-11-07 13:25:07	\N	\N
+1	User	user@mail.ru	\N	$2y$10$9qH8SNuOL18o5C9hSIHe3OSqBzLyHjRODUd7.xc7qjZj/Rp5dH1AO	\N	\N	\N	2021-03-10 13:39:01	2021-03-10 13:40:29	\N	\N
 \.
 
 
 --
--- TOC entry 2929 (class 0 OID 0)
--- Dependencies: 207
 -- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -910,8 +851,6 @@ SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
 
 
 --
--- TOC entry 2930 (class 0 OID 0)
--- Dependencies: 216
 -- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -919,8 +858,6 @@ SELECT pg_catalog.setval('public.games_id_seq', 3, true);
 
 
 --
--- TOC entry 2931 (class 0 OID 0)
--- Dependencies: 202
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -928,8 +865,6 @@ SELECT pg_catalog.setval('public.migrations_id_seq', 11, true);
 
 
 --
--- TOC entry 2932 (class 0 OID 0)
--- Dependencies: 209
 -- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -937,8 +872,6 @@ SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 374, true);
 
 
 --
--- TOC entry 2933 (class 0 OID 0)
--- Dependencies: 213
 -- Name: team_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -946,8 +879,6 @@ SELECT pg_catalog.setval('public.team_user_id_seq', 1, false);
 
 
 --
--- TOC entry 2934 (class 0 OID 0)
--- Dependencies: 211
 -- Name: teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -955,16 +886,13 @@ SELECT pg_catalog.setval('public.teams_id_seq', 1, false);
 
 
 --
--- TOC entry 2935 (class 0 OID 0)
--- Dependencies: 204
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
--- TOC entry 2753 (class 2606 OID 125752)
 -- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -973,7 +901,6 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- TOC entry 2755 (class 2606 OID 125754)
 -- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -982,7 +909,6 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- TOC entry 2773 (class 2606 OID 133939)
 -- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -991,7 +917,6 @@ ALTER TABLE ONLY public.games
 
 
 --
--- TOC entry 2746 (class 2606 OID 125720)
 -- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1000,7 +925,6 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- TOC entry 2757 (class 2606 OID 125765)
 -- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1009,7 +933,6 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- TOC entry 2759 (class 2606 OID 125768)
 -- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1018,7 +941,6 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- TOC entry 2770 (class 2606 OID 125795)
 -- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1027,7 +949,6 @@ ALTER TABLE ONLY public.sessions
 
 
 --
--- TOC entry 2765 (class 2606 OID 125785)
 -- Name: team_user team_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1036,7 +957,6 @@ ALTER TABLE ONLY public.team_user
 
 
 --
--- TOC entry 2767 (class 2606 OID 125787)
 -- Name: team_user team_user_team_id_user_id_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1045,7 +965,6 @@ ALTER TABLE ONLY public.team_user
 
 
 --
--- TOC entry 2762 (class 2606 OID 125776)
 -- Name: teams teams_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1054,7 +973,6 @@ ALTER TABLE ONLY public.teams
 
 
 --
--- TOC entry 2748 (class 2606 OID 125733)
 -- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1063,7 +981,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2750 (class 2606 OID 125731)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1072,7 +989,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 2751 (class 1259 OID 125740)
 -- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1080,7 +996,6 @@ CREATE INDEX password_resets_email_index ON public.password_resets USING btree (
 
 
 --
--- TOC entry 2760 (class 1259 OID 125766)
 -- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1088,7 +1003,6 @@ CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON public.
 
 
 --
--- TOC entry 2768 (class 1259 OID 125797)
 -- Name: sessions_last_activity_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1096,7 +1010,6 @@ CREATE INDEX sessions_last_activity_index ON public.sessions USING btree (last_a
 
 
 --
--- TOC entry 2771 (class 1259 OID 125796)
 -- Name: sessions_user_id_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1104,15 +1017,13 @@ CREATE INDEX sessions_user_id_index ON public.sessions USING btree (user_id);
 
 
 --
--- TOC entry 2763 (class 1259 OID 125777)
 -- Name: teams_user_id_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX teams_user_id_index ON public.teams USING btree (user_id);
 
 
--- Completed on 2021-02-24 14:16:55
-
 --
 -- PostgreSQL database dump complete
 --
+
