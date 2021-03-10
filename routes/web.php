@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::get('{any}', function () {
     return view('entry-point');
 })->where('any', '.*');

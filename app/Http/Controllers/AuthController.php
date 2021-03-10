@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     /**
      * @param Request $request
@@ -22,5 +23,14 @@ class LoginController extends Controller
         }
 
         return response(['message' => 'Wrong credentials'], 401);
+    }
+
+    public function register(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
     }
 }

@@ -838,10 +838,6 @@ COPY public.teams (id, user_id, name, personal_team, created_at, updated_at) FRO
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, name, email, email_verified_at, password, remember_token, current_team_id, profile_photo_path, created_at, updated_at, two_factor_secret, two_factor_recovery_codes) FROM stdin;
-1	User	user@mail.ru	\N	$2y$10$9qH8SNuOL18o5C9hSIHe3OSqBzLyHjRODUd7.xc7qjZj/Rp5dH1AO	\N	\N	\N	2021-03-10 13:39:01	2021-03-10 13:40:29	\N	\N
-\.
-
 
 --
 -- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
