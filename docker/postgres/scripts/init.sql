@@ -896,7 +896,7 @@ COPY public.teams (id, user_id, name, personal_team, created_at, updated_at) FRO
 --
 
 COPY public.users (id, name, email, email_verified_at, password, remember_token, current_team_id, profile_photo_path, created_at, updated_at, two_factor_secret, two_factor_recovery_codes) FROM stdin;
-1	Username	user@mail.ru	\N	$2y$10$f.I6SrzVcecWKvg2q3l2VudWSF8wCKn3tAkgDxK8QP6a7DCtww022	\N	\N	\N	2020-11-07 13:25:07	2020-11-07 13:25:07	\N	\N
+1	Username	user@mail.ru	\N	$2y$10$mmddYZWf7md.xSoM2/GGe.NsVTaJFMUR8i.mJkP2zE6pZdffG76qm	\N	\N	\N	2020-11-07 13:25:07	2020-11-07 13:25:07	\N	\N
 \.
 
 
