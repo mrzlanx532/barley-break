@@ -12,7 +12,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => 'game'], function () {
         Route::post('/', [GameController::class, 'create']);
-        Route::post('{id}/solve', [GameController::class, 'checkSolveGame']);
+        Route::post('{hash}/solve', [GameController::class, 'checkSolveGame']);
         Route::get('last', [GameController::class, 'lastGame']);
     });
 });
